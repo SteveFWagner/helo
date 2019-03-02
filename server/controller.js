@@ -24,24 +24,31 @@ module.exports={
             // console.log('hithithit')
             db.get_posts_wo_user_search(not,search).then(resp =>{
                 res.status(200).send(resp)
-            })
+            }).catch(err=> res.sendStatus(500))
         }else if( not !== '0' && search === '0'){
             db.get_posts_wo_user(not).then(resp =>{
                 // console.log('hithit')
                 res.status(200).send(resp)
-            })
+            }).catch(err=> res.sendStatus(500))
         }else if( not === '0' && search !== '0'){
             db.get_posts_search(search).then(resp =>{
                 // console.log('hithit')
                 res.status(200).send(resp)
-            })
+            }).catch(err=> res.sendStatus(500))
         }else if(not === '0' && search === '0'){
             db.get_posts(search).then(resp =>{
-                console.log('hithit')
+                // console.log('hithit')
                 res.status(200).send(resp)
-            })
+            }).catch(err=> res.sendStatus(500))
         }
         
 
+    },
+    getPost: (req,res)=>{
+        const db = req.app.get('db')
+        let {id} = req.params
+        db.get_post(id).then(resp=>{
+            res.status(200).send(resp)
+        }).catch(err=> res.sendStatus(500))
     }
 }

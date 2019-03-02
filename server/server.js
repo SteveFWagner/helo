@@ -23,3 +23,4 @@ app.post('/api/auth/register', ct.register)
 app.post('/api/auth/login', ct.login)
 
 app.get('/api/posts/:id',ct.getPosts)
+app.get('/api/post/:id',ct.getPost)
